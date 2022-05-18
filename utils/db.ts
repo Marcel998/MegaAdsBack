@@ -6,4 +6,4 @@ export const pool = createPool({
     database: 'megaads',
     namedPlaceholders: true,
     decimalNumbers: true,
-})
+});
