@@ -25,36 +25,7 @@ test('Validates invalid price', ()=>{
 
 // @TODO: Check all the validations
 
-// test('Insert ad to database', ()=>{
-//     const ad = new AdRecord(defaultObj);
-//
-//     // const idOfNewRecord = async()=> await ad.insert();
-//     //
-//     // const newNewIdOfNewRecortAsync = idOfNewRecord();
-//
-//     // let idUpperScope;
-//     // //
-//     // (async () => {
-//     //     idUpperScope = await ad.insert().then(res => {
-//     //         return res
-//     //     })
-//     // })()
-//     //
-//     //
-//     // console.log({idUpperScope});
-//
-//     // expect(idUpperScope).toMatch(/[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}/)
-//
-//     // expect( async()=> await ad.insert()).toBeDefined();
-//
-//     // expect( newNewIdOfNewRecortAsync).toMatch(/[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}/)
-//
-//
-//     expect(async()=> await ad.insert().then((result)=> {
-//         return result
-//     }).toMatch(/[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}/)
-//
-// });
+
 
 
 
