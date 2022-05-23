@@ -1,9 +1,10 @@
-import {AdEntity, NewAdEntity} from "../types";
+import {AdEntity, NewAdEntity, SimpleAdEntity} from "../types";
 import {ValidationError} from "../utils/errors";
+import { v4 as uuid } from "uuid";
 import {pool} from "../utils/db";
-import { FieldPacket } from "mysql2";
+import {FieldPacket} from "mysql2/promise";
 
-type AdRecordResults = [AdEntity[], FieldPacket[]];
+type AdRecordResults = [AdRecord[], FieldPacket[]];
 
 export class AdRecord implements AdEntity {
     public id: string;
@@ -50,34 +51,54 @@ export class AdRecord implements AdEntity {
             id,
         }) as AdRecordResults;
 
-        console.log("tutaj")
-        console.log(results);
+        // console.log("tutaj")
+        // console.log(results);
 
         return results.length === 0 ? null : new AdRecord(results[0]) ;
     }
 
+    async insert(): Promise<string> {
+        if (!this.id) {
+            this.id = uuid();
+        }
+
+        console.log({newIdFromInsert: this.id});
+
+        await pool.execute("INSERT INTO `ads` (`id`, `name`, `description`, `price`, `url`, `lat`, `lon`) VALUES(:id, :name, :description, :price, :url, :lat, :lon)",
+            {
+                id: this.id,
+                name: this.name,
+                description: this.description,
+                price: this.price,
+                url: this.url,
+                lat: this.lat,
+                lon: this.lon,
+            }
+        );
+
+        return this.id
+    };
+
+    static async findAll(name: string): Promise<SimpleAdEntity[]>{
+        // if(adName){
+            const [results] = (await pool.execute("SELECT * FROM `ads` WHERE `name` LIKE :search",
+                {
+                    search: `%${name}%`
+                }
+                )) as AdRecordResults;
+
+            return results.map((result)=> {
+                const {id, lat, lon} = result;
+
+                return {id, lat, lon};
+            }
+
+            );
+
+    }
+
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
