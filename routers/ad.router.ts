@@ -15,7 +15,7 @@ export const adRouter = Router()
         res.json(ad);
     })
 
-    .post("/add", async (req, res)=>{
+    .post("/", async (req, res)=>{
         console.log(req.body)
         const ad = new AdRecord(req.body);
 
