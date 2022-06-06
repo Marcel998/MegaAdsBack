@@ -3,4 +3,5 @@ export const config = {
     dbUser: 'root',
     dbPassword: '',
     dbDatabase: 'megak_ads',
+    corsOrigin: 'http://localhost:3000',
 };

@@ -4,12 +4,13 @@ import 'express-async-errors';
 import {handleError} from "./utils/errors";
 import rateLimit from 'express-rate-limit';
 import {adRouter} from "./routers/ad.router";
+import {config} from "./config/config";
 
 const app = express();
 
 //z jakiego miejsca nasza aplikacja frontendowa może się kontaktować z backendem (w przypadku produkcji będą to zmienne)
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: config.corsOrigin,
 }));
 
 //rozkodowanie jsona przy kontaktowaniu się frontendu z backendem
